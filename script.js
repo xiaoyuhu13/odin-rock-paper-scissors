@@ -22,14 +22,13 @@ function playRound (playerSelection, computerSelection) {
     }
 };
 
-//Playing best of 5
+//Playing a 5 round game (not best of 5 yet)
 function game(){
     let playerScore = 0;
     let computerScore = 0;
 
     for (let i = 0; i <5; i++) {
         let playerSelection = prompt('Rock, Paper, or Scissors?', "");
-        playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
 
         let computerSelection = computerPlay();
         let outcome = playRound(playerSelection, computerSelection);
@@ -37,9 +36,9 @@ function game(){
         console.log(outcome);
         
         if (outcome === `You Win! ${playerSelection} beats ${computerSelection}!`) {
-            playerScore++;
+            ++playerScore;
         } else if (outcome === `You Lose! ${computerSelection} beats ${playerSelection}!`) {
-            computerScore++;
+            ++computerScore;
         }   
         };
 
@@ -51,6 +50,86 @@ function game(){
          return `Player Score: ${playerScore}, Computer Score: ${computerScore}. It\'s a draw!`;
      };
 };
+
+
+//Adding a UI
+
+const rock = document.querySelector('.rock');
+const paper = document.querySelector('.paper');
+const scissors = document.querySelector('.scissors');
+const result = document.querySelector('.result');
+
+let playerScore = 0;
+let computerScore = 0;
+
+rock.addEventListener('click', function() {
+    
+    //keeping score
+    let playerSelection = 'Rock';
+    let computerSelection = computerPlay();
+    const outcome = playRound(playerSelection, computerSelection);
+
+    if (outcome === `You Win! ${playerSelection} beats ${computerSelection}!`) {
+        ++playerScore;
+    } else if (outcome === `You Lose! ${computerSelection} beats ${playerSelection}!`) {
+        ++computerScore;
+    }; 
+    result.textContent = `${outcome} Player Score: ${playerScore} Computer Score: ${computerScore}`;
+
+    //announcing winner
+    if (playerScore === 5) { 
+        result.textContent = `Player wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+    } else if (computerScore === 5) {
+        result.textContent = `Computer wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+    };
+});
+
+
+ paper.addEventListener('click', function () {
+    //keeping score
+    let playerSelection = 'Paper';
+    let computerSelection = computerPlay();
+    const outcome = playRound(playerSelection, computerSelection);
+
+    if (outcome === `You Win! ${playerSelection} beats ${computerSelection}!`) {
+        ++playerScore;
+    } else if (outcome === `You Lose! ${computerSelection} beats ${playerSelection}!`) {
+        ++computerScore;
+    }; 
+    result.textContent = `${outcome} Player Score: ${playerScore} Computer Score: ${computerScore}`;
+
+    //announcing winner
+    if (playerScore === 5) { 
+        result.textContent = `Player wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+    } else if (computerScore === 5) {
+        result.textContent = `Computer wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+    };
+});
+
+
+
+scissors.addEventListener('click', function () {
+    //keeping score
+    let playerSelection = 'Scissors';
+    let computerSelection = computerPlay();
+    const outcome = playRound(playerSelection, computerSelection);
+
+    if (outcome === `You Win! ${playerSelection} beats ${computerSelection}!`) {
+        ++playerScore;
+    } else if (outcome === `You Lose! ${computerSelection} beats ${playerSelection}!`) {
+        ++computerScore;
+    }; 
+    result.textContent = `${outcome} Player Score: ${playerScore} Computer Score: ${computerScore}`;
+
+    //announcing winner
+    if (playerScore === 5) { 
+        result.textContent = `Player wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+    } else if (computerScore === 5) {
+        result.textContent = `Computer wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+    };
+});
+
+
 
 
 
