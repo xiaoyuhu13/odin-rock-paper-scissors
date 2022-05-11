@@ -1,2 +1,9 @@
 - to pass in parameters to a function in addEventListener need to use an anonymous function...
 - reading through official documentation is helpful!
+
+-alternate solution could be appending h1 and p tags into the div instead of changing the textContent
+-this would make it easier to style with css in future iterations
+-first create p element
+-then add textContent
+-then add to div
+-need to remove once other buttons pressed? 

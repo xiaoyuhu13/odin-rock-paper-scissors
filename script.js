@@ -62,76 +62,43 @@ const result = document.querySelector('.result');
 let playerScore = 0;
 let computerScore = 0;
 
+//Output result of one round, when game ends start new game
+//Maybe could be split into 2 functions
+function outputResult (buttonSelection){
+    //keeping score
+    let playerSelection = buttonSelection;
+    let computerSelection = computerPlay();
+    const outcome = playRound(playerSelection, computerSelection);
+
+    if (outcome === `You Win! ${playerSelection} beats ${computerSelection}!`) {
+        ++playerScore;
+    } else if (outcome === `You Lose! ${computerSelection} beats ${playerSelection}!`) {
+        ++computerScore;
+    }; 
+    result.textContent = `${outcome} Player Score: ${playerScore} Computer Score: ${computerScore}`;
+
+    //announcing winner
+    if (playerScore === 5) { 
+        result.textContent = `Player wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+        playerScore = 0;
+        computerScore = 0;
+    } else if (computerScore === 5) {
+        result.textContent = `Computer wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+        playerScore = 0;
+        computerScore = 0;
+    };
+}
+
 rock.addEventListener('click', function() {
-    
-    //keeping score
-    let playerSelection = 'Rock';
-    let computerSelection = computerPlay();
-    const outcome = playRound(playerSelection, computerSelection);
-
-    if (outcome === `You Win! ${playerSelection} beats ${computerSelection}!`) {
-        ++playerScore;
-    } else if (outcome === `You Lose! ${computerSelection} beats ${playerSelection}!`) {
-        ++computerScore;
-    }; 
-    result.textContent = `${outcome} Player Score: ${playerScore} Computer Score: ${computerScore}`;
-
-    //announcing winner
-    if (playerScore === 5) { 
-        result.textContent = `Player wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
-    } else if (computerScore === 5) {
-        result.textContent = `Computer wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
-    };
+    outputResult(rock.textContent);
 });
 
-
- paper.addEventListener('click', function () {
-    //keeping score
-    let playerSelection = 'Paper';
-    let computerSelection = computerPlay();
-    const outcome = playRound(playerSelection, computerSelection);
-
-    if (outcome === `You Win! ${playerSelection} beats ${computerSelection}!`) {
-        ++playerScore;
-    } else if (outcome === `You Lose! ${computerSelection} beats ${playerSelection}!`) {
-        ++computerScore;
-    }; 
-    result.textContent = `${outcome} Player Score: ${playerScore} Computer Score: ${computerScore}`;
-
-    //announcing winner
-    if (playerScore === 5) { 
-        result.textContent = `Player wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
-    } else if (computerScore === 5) {
-        result.textContent = `Computer wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
-    };
+paper.addEventListener('click', function () {
+    outputResult(paper.textContent);
 });
-
-
 
 scissors.addEventListener('click', function () {
-    //keeping score
-    let playerSelection = 'Scissors';
-    let computerSelection = computerPlay();
-    const outcome = playRound(playerSelection, computerSelection);
-
-    if (outcome === `You Win! ${playerSelection} beats ${computerSelection}!`) {
-        ++playerScore;
-    } else if (outcome === `You Lose! ${computerSelection} beats ${playerSelection}!`) {
-        ++computerScore;
-    }; 
-    result.textContent = `${outcome} Player Score: ${playerScore} Computer Score: ${computerScore}`;
-
-    //announcing winner
-    if (playerScore === 5) { 
-        result.textContent = `Player wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
-        playerScore = 0;
-        computerScore = 0;
-    } else if (computerScore === 5) {
-        result.textContent = `Computer wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
-        playerScore = 0;
-        computerScore = 0;
-    };
-
+    outputResult(scissors.textContent);
 });
 
 

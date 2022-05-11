@@ -1,0 +1,12 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+}
+
+button {
+    padding: 2vh 4vw;
+    margin: 8vh 2vw 0vh 2vw;
+}
