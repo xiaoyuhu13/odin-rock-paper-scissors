@@ -124,9 +124,14 @@ scissors.addEventListener('click', function () {
     //announcing winner
     if (playerScore === 5) { 
         result.textContent = `Player wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+        playerScore = 0;
+        computerScore = 0;
     } else if (computerScore === 5) {
         result.textContent = `Computer wins the game! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+        playerScore = 0;
+        computerScore = 0;
     };
+
 });
 
 
